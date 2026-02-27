@@ -20,7 +20,7 @@ useEffect(() => {
 
   useEffect(() => {
     axios
-      .get(`http://localhost:5000/api/weddings/${name}`)
+      .get(`${import.meta.env.VITE_API_URL}/api/weddings/${name}`)
       .then((res) => {
         setPhotos(res.data.photos || []);
         setFavorites(res.data.favorites || []);
@@ -42,7 +42,7 @@ useEffect(() => {
     setFavorites(updatedFavorites);
 
     axios.put(
-      `http://localhost:5000/api/weddings/${name}/favorites`,
+      `${import.meta.env.VITE_API_URL}/api/weddings/${name}/favorites`,
       { favorites: updatedFavorites }
     );
   };
@@ -72,7 +72,7 @@ useEffect(() => {
                 className="relative bg-white rounded-2xl shadow-md overflow-hidden hover:shadow-xl transition"
               >
                 <img
-                  src={`http://localhost:5000/uploads/${photo}`}
+                  src={`${import.meta.env.VITE_API_URL}/uploads/${photo}`}
                   alt="Wedding"
                   className="w-full h-64 object-cover"
                 />

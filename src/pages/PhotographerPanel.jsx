@@ -7,10 +7,10 @@ export default function PhotographerPanel() {
   const [monthlyRevenue, setMonthlyRevenue] = useState([]);
 
   useEffect(() => {
-    axios.get("http://localhost:5000/api/stats")
+    axios.get("${import.meta.env.VITE_API_URL}/api/stats")
       .then(res => setStats(res.data))
       .catch(() => alert("Error cargando estadísticas"));
-      axios.get("http://localhost:5000/api/monthly-revenue")
+      axios.get("${import.meta.env.VITE_API_URL}/api/monthly-revenue")
   .then(res => setMonthlyRevenue(res.data));
   }, []);
 

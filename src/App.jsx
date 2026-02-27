@@ -11,7 +11,11 @@ function App() {
         <Route path="/" element={<Dashboard />} />
         <Route path="/login" element={<Login />} />
         <Route path="/couple/:name" element={<CoupleArea />} />
-        <Route path="/photographer" element={<PhotographerPanel />} />
+        <Route path="/photographer" element={
+    <ProtectedRoute>
+      <PhotographerPanel />
+    </ProtectedRoute>
+  } />
       </Routes>
     </BrowserRouter>
   );

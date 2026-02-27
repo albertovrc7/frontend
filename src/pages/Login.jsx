@@ -2,6 +2,8 @@ import { useState } from "react";
 import { useNavigate } from "react-router-dom";
 import axios from "axios";
 
+localStorage.setItem("token", res.data.token);
+
 export default function Login() {
   const [couple, setCouple] = useState("");
   const [password, setPassword] = useState("");

@@ -16,7 +16,7 @@ function Dashboard() {
   }, []);
 
   const fetchWeddings = async () => {
-    const res = await axios.get("${import.meta.env.VITE_API_URL}/api/weddings");
+    const res = await axios.get(`${import.meta.env.VITE_API_URL}/api/weddings`);
     setWeddings(res.data);
   };
 
@@ -26,7 +26,7 @@ function Dashboard() {
 
   const handleSubmit = async (e) => {
     e.preventDefault();
-    await axios.post("${import.meta.env.VITE_API_URL}/api/weddings", form);
+    await axios.post(`${import.meta.env.VITE_API_URL}/api/weddings`, form);
     setForm({
       couple: "",
       date: "",

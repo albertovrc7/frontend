@@ -33,7 +33,7 @@ export default function Login() {
 
         <input
           type="text"
-          placeholder="Usuario (admin)"
+          placeholder="Usuario"
           className="w-full mb-4 p-2 border rounded-lg"
           value={username}
           onChange={(e) => setUsername(e.target.value)}
@@ -41,7 +41,7 @@ export default function Login() {
 
         <input
           type="password"
-          placeholder="Contraseña (1234)"
+          placeholder="Contraseña"
           className="w-full mb-4 p-2 border rounded-lg"
           value={password}
           onChange={(e) => setPassword(e.target.value)}

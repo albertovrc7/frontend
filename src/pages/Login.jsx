@@ -2,27 +2,26 @@ import { useState } from "react";
 import { useNavigate } from "react-router-dom";
 import axios from "axios";
 
-localStorage.setItem("token", res.data.token);
 
 export default function Login() {
   const [couple, setCouple] = useState("");
   const [password, setPassword] = useState("");
   const navigate = useNavigate();
 
-  const handleLogin = async () => {
-    try {
-      const res = await axios.post(
-        `${import.meta.env.VITE_API_URL}/api/login`,
-        { couple, password }
-      );
+const handleLogin = async () => {
+  try {
+    const res = await axios.post(
+      `${import.meta.env.VITE_API_URL}/api/login`,
+      { username, password }
+    );
 
-      localStorage.setItem("loggedCouple", res.data.couple);
+    localStorage.setItem("token", res.data.token);
 
-      navigate(`/couple/${res.data.couple}`);
-    } catch (error) {
-      alert("Credenciales incorrectas");
-    }
-  };
+    navigate("/photographer");
+  } catch (error) {
+    alert("Credenciales incorrectas");
+  }
+};
 
   return (
     <div className="min-h-screen flex items-center justify-center bg-gray-100">

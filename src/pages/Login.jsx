@@ -2,45 +2,46 @@ import { useState } from "react";
 import { useNavigate } from "react-router-dom";
 import axios from "axios";
 
-
 export default function Login() {
-  const [couple, setCouple] = useState("");
+  const [username, setUsername] = useState("");   // 🔥 antes era couple
   const [password, setPassword] = useState("");
   const navigate = useNavigate();
 
-const handleLogin = async () => {
-  try {
-    const res = await axios.post(
-      `${import.meta.env.VITE_API_URL}/api/login`,
-      { username, password }
-    );
+  const handleLogin = async () => {
+    try {
+      console.log(username, password); // para debug
 
-    localStorage.setItem("token", res.data.token);
+      const res = await axios.post(
+        `${import.meta.env.VITE_API_URL}/api/login`,
+        { username, password }
+      );
 
-    navigate("/photographer");
-  } catch (error) {
-    alert("Credenciales incorrectas");
-  }
-};
+      localStorage.setItem("token", res.data.token);
+
+      navigate("/photographer");
+    } catch (error) {
+      alert("Credenciales incorrectas");
+    }
+  };
 
   return (
     <div className="min-h-screen flex items-center justify-center bg-gray-100">
       <div className="bg-white p-8 rounded-2xl shadow-xl w-96">
         <h1 className="text-2xl font-bold mb-6 text-center">
-          Área privada
+          Área privada fotógrafo
         </h1>
 
         <input
           type="text"
-          placeholder="Nombre pareja (ej: laura-juan)"
+          placeholder="Usuario (admin)"
           className="w-full mb-4 p-2 border rounded-lg"
-          value={couple}
-          onChange={(e) => setCouple(e.target.value)}
+          value={username}
+          onChange={(e) => setUsername(e.target.value)}
         />
 
         <input
           type="password"
-          placeholder="Contraseña"
+          placeholder="Contraseña (1234)"
           className="w-full mb-4 p-2 border rounded-lg"
           value={password}
           onChange={(e) => setPassword(e.target.value)}

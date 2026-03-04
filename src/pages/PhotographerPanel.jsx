@@ -1,28 +1,28 @@
 import { useEffect, useState } from "react";
-import axios from "axios";
 import { LineChart, Line, XAxis, YAxis, Tooltip, ResponsiveContainer } from "recharts";
-const [stats, setStats] = useState(null);
-const [revenueData, setRevenueData] = useState([]);
 
 export default function Photographer() {
 
+  // ✅ LOS HOOKS VAN DENTRO
+  const [stats, setStats] = useState(null);
+  const [revenueData, setRevenueData] = useState([]);
+
   useEffect(() => {
-  const token = localStorage.getItem("token");
+    const token = localStorage.getItem("token");
 
-  fetch("https://mvp-photo-production.up.railway.app/api/stats", {
-    headers: { Authorization: `Bearer ${token}` }
-  })
-    .then(res => res.json())
-    .then(data => setStats(data));
+    fetch("https://mvp-photo-production.up.railway.app/api/stats", {
+      headers: { Authorization: `Bearer ${token}` }
+    })
+      .then(res => res.json())
+      .then(data => setStats(data));
 
-  fetch("https://mvp-photo-production.up.railway.app/api/monthly-revenue", {
-    headers: { Authorization: `Bearer ${token}` }
-  })
-    .then(res => res.json())
-    .then(data => setRevenueData(data));
+    fetch("https://mvp-photo-production.up.railway.app/api/monthly-revenue", {
+      headers: { Authorization: `Bearer ${token}` }
+    })
+      .then(res => res.json())
+      .then(data => setRevenueData(data));
 
-}, []);
-
+  }, []);
 
   if (!stats) return <p>Cargando métricas...</p>;
 
@@ -48,16 +48,16 @@ export default function Photographer() {
 
       <h2 style={{ marginTop: "50px" }}>📈 Facturación mensual</h2>
 
-<div style={{ width: "100%", height: 300 }}>
-  <ResponsiveContainer>
-    <LineChart data={revenueData}>
-      <XAxis dataKey="month" />
-      <YAxis />
-      <Tooltip />
-      <Line type="monotone" dataKey="revenue" stroke="#8884d8" strokeWidth={3} />
-    </LineChart>
-  </ResponsiveContainer>
-</div>
+      <div style={{ width: "100%", height: 300 }}>
+        <ResponsiveContainer>
+          <LineChart data={revenueData}>
+            <XAxis dataKey="month" />
+            <YAxis />
+            <Tooltip />
+            <Line type="monotone" dataKey="revenue" stroke="#8884d8" strokeWidth={3} />
+          </LineChart>
+        </ResponsiveContainer>
+      </div>
     </div>
   );
 }

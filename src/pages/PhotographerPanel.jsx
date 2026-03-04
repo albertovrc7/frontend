@@ -7,10 +7,24 @@ export default function Photographer() {
   const [stats, setStats] = useState(null);
 
   useEffect(() => {
-    fetch("/api/stats")
-      .then(res => res.json())
-      .then(data => setStats(data));
-  }, []);
+  const token = localStorage.getItem("token");
+
+  fetch("https://mvp-photo-production.up.railway.app/api/stats", {
+    headers: {
+      Authorization: `Bearer ${token}`
+    }
+  })
+    .then(res => res.json())
+    .then(data => {
+      if (!data.total) {
+        console.error("Error API:", data);
+        return;
+      }
+      setStats(data);
+    })
+    .catch(err => console.error(err));
+
+}, []);
 
   if (!stats) return <p>Cargando métricas...</p>;
 

@@ -2,7 +2,6 @@ import { useEffect, useState } from "react";
 import axios from "axios";
 import { LineChart, Line, XAxis, YAxis, Tooltip, ResponsiveContainer } from "recharts";
 
-import { useEffect, useState } from "react";
 
 export default function Photographer() {
   const [stats, setStats] = useState(null);

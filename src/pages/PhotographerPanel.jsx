@@ -1,11 +1,13 @@
 import { useEffect, useState } from "react";
 import { LineChart, Line, XAxis, YAxis, Tooltip, ResponsiveContainer } from "recharts";
 
+
 export default function Photographer() {
 
   // ✅ LOS HOOKS VAN DENTRO
   const [stats, setStats] = useState(null);
   const [revenueData, setRevenueData] = useState([]);
+  const [topPhotos, setTopPhotos] = useState([]);
 
   useEffect(() => {
     const token = localStorage.getItem("token");
@@ -21,6 +23,10 @@ export default function Photographer() {
     })
       .then(res => res.json())
       .then(data => setRevenueData(data));
+
+      fetch("https://mvp-photo-production.up.railway.app/api/top-photos")
+  .then(res => res.json())
+  .then(data => setTopPhotos(data));
 
   }, []);
 
@@ -65,6 +71,26 @@ export default function Photographer() {
           </LineChart>
         </ResponsiveContainer>
       </div>
+
+      <h2 style={{ marginTop: "50px" }}>🔥 Fotos favoritas de clientes</h2>
+
+<div style={{ display: "flex", gap: "20px", flexWrap: "wrap" }}>
+  {topPhotos.map((p, i) => (
+    <div key={i} style={{ textAlign: "center" }}>
+      <img
+        src={`https://mvp-photo-production.up.railway.app/uploads/${p.photo}`}
+        style={{
+          width: "160px",
+          height: "160px",
+          objectFit: "cover",
+          borderRadius: "10px"
+        }}
+      />
+      <p>❤️ {p.likes}</p>
+    </div>
+  ))}
+</div>
+
     </div>
   );
 }

@@ -2,7 +2,7 @@ import { useEffect, useState } from "react";
 import { LineChart, Line, XAxis, YAxis, Tooltip, ResponsiveContainer } from "recharts";
 
 import WeddingCalendar from "../components/WeddingCalendar";
-import Weddings from "../components/Weddings";
+import Weddings from "../components/WeddingDetails";
 
 export default function Photographer() {
 

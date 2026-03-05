@@ -1,8 +1,9 @@
 import { useEffect, useState } from "react";
 import { LineChart, Line, XAxis, YAxis, Tooltip, ResponsiveContainer } from "recharts";
 
+import Calendar from "./Calendar";
+import Weddings from "./Weddings";
 import WeddingCalendar from "../components/WeddingCalendar";
-import Weddings from "../components/WeddingDetails";
 
 export default function Photographer() {
 
@@ -153,7 +154,7 @@ export default function Photographer() {
 
       {section === "calendar" && (
 
-        <WeddingCalendar  />
+        <Calendar />
 
       )}
 

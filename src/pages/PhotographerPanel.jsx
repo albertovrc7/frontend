@@ -8,6 +8,7 @@ export default function Photographer() {
   const [stats, setStats] = useState(null);
   const [revenueData, setRevenueData] = useState([]);
   const [topPhotos, setTopPhotos] = useState([]);
+  const [calendar, setCalendar] = useState({});
 
   useEffect(() => {
     const token = localStorage.getItem("token");
@@ -27,6 +28,10 @@ export default function Photographer() {
       fetch("https://mvp-photo-production.up.railway.app/api/top-photos")
   .then(res => res.json())
   .then(data => setTopPhotos(data));
+
+  fetch("https://mvp-photo-production.up.railway.app/api/wedding-calendar")
+  .then(res => res.json())
+  .then(data => setCalendar(data));
 
   }, []);
 
@@ -90,6 +95,30 @@ export default function Photographer() {
     </div>
   ))}
 </div>
+
+<h2 style={{ marginTop: "60px" }}>📅 Calendario de bodas</h2>
+
+{Object.keys(calendar).map(month => (
+  <div key={month} style={{ marginBottom: "20px" }}>
+    
+    <h3>{month}</h3>
+
+    {calendar[month].map((w, i) => (
+      <div
+        key={i}
+        style={{
+          background: "#1a1a1a",
+          padding: "10px",
+          margin: "5px 0",
+          borderRadius: "8px"
+        }}
+      >
+        {w.date} — {w.couple} ({w.status})
+      </div>
+    ))}
+
+  </div>
+))}
 
     </div>
   );

@@ -1,6 +1,6 @@
 import { useEffect, useState } from "react";
 import { LineChart, Line, XAxis, YAxis, Tooltip, ResponsiveContainer } from "recharts";
-
+import WeddingCalendar from "../components/WeddingCalendar";
 
 export default function Photographer() {
 
@@ -98,27 +98,9 @@ export default function Photographer() {
 
 <h2 style={{ marginTop: "60px" }}>📅 Calendario de bodas</h2>
 
-{Object.keys(calendar).map(month => (
-  <div key={month} style={{ marginBottom: "20px" }}>
-    
-    <h3>{month}</h3>
+<WeddingCalendar />
 
-    {calendar[month].map((w, i) => (
-      <div
-        key={i}
-        style={{
-          background: "#1a1a1a",
-          padding: "10px",
-          margin: "5px 0",
-          borderRadius: "8px"
-        }}
-      >
-        {w.date} — {w.couple} ({w.status})
-      </div>
-    ))}
 
-  </div>
-))}
 
     </div>
   );

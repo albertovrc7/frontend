@@ -77,4 +77,5 @@ function Card({ title, value }) {
       <p style={{ fontSize: "22px", marginTop: "10px" }}>{value}</p>
     </div>
   );
+  
 }

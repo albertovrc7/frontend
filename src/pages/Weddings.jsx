@@ -1,9 +1,11 @@
 import { useEffect, useState } from "react";
 import axios from "axios";
+import WeddingEditor from "../components/WeddingEditor";
 
 export default function Weddings() {
 
   const [weddings, setWeddings] = useState([]);
+  const [selectedWedding, setSelectedWedding] = useState(null);
 
   useEffect(() => {
     fetchWeddings();
@@ -59,7 +61,7 @@ export default function Weddings() {
 
             <tr
               key={w._id}
-              onClick={()=>alert("Aquí abriremos edición")}
+              onClick={()=>setSelectedWedding(w)}
               style={{cursor:"pointer"}}
             >
               <td>{w.couple}</td>
@@ -73,6 +75,10 @@ export default function Weddings() {
         </tbody>
 
       </table>
+      <WeddingEditor
+  wedding={selectedWedding}
+  onClose={()=>setSelectedWedding(null)}
+/>
 
     </div>
   );
